@@ -1,10 +1,12 @@
 name: Build and Push Docker image to Docker Hub
 
 on: push
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -20,4 +22,6 @@ jobs:
         with:
           context: foosball/
           push: true
-          tags: wzhang4umbc/foosball:${{github.run_number}}
+          tags: |
+            wzhang4umbc/foosball:${{ github.run_number }}
+            wzhang4umbc/foosball:latest
